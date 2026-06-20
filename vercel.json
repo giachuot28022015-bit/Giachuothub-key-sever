@@ -7,4 +7,3 @@
     { "src": "/(.*)", "dest": "Sever.js" }
   ]
 }
-module.exports = app;
