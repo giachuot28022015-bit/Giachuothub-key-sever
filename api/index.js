@@ -1,15 +1,25 @@
 const express = require('express');
 const app = express();
 
-// Route chính để tạo key
+// Bộ nhớ tạm để lưu Key
+const validKeys = new Set();
+
+// API tạo key
 app.get('/api/generate-key', (req, res) => {
-    // Tạo key ngẫu nhiên
     const key = "Giachuot_" + Math.floor(Math.random() * 90000 + 10000);
-    
-    // Trả về dữ liệu dạng JSON cho trình duyệt
+    validKeys.add(key);
     res.json({ key: key });
 });
 
-// Chỉ xuất app ra là xong, không cần app.listen hay cấu hình phức tạp
+// API kiểm tra key
+app.get('/api/check-key', (req, res) => {
+    const key = req.query.key;
+    if (validKeys.has(key)) {
+        validKeys.delete(key);
+        res.send("true");
+    } else {
+        res.send("false");
+    }
+});
+
 module.exports = app;
-    
