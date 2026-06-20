@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Giachuothub Key System</title>
     <style>
-        body { background: url('https://cdn.phototourl.com/free/2026-06-20-fa725e6a-9afd-46e4-aaf4-b92749dc8e00.jpg') center/cover; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: white; }
-        .box { background: rgba(0,0,0,0.7); padding: 30px; border-radius: 20px; text-align: center; }
-        button { background: #6366f1; border: none; padding: 15px 30px; color: white; border-radius: 10px; cursor: pointer; font-size: 16px; }
+        body { background: url('https://i.ibb.co/hLqJ97Hk/dwmm-H87p.jpg') center/cover; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: white; font-family: sans-serif; }
+        .box { background: rgba(0,0,0,0.8); padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #444; width: 300px; }
+        h2 { color: #6366f1; }
+        button { background: #6366f1; border: none; padding: 15px 30px; color: white; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; margin-top: 10px; }
     </style>
 </head>
 <body>
     <div class="box">
         <h3>🔑 Giachuothub Key System</h3>
         <h2 id="key-display">❌ NO KEY</h2>
-        <button onclick="generateKey()">Copy Key</button>
+        <!-- Thay link dưới bằng link rút gọn của bạn -->
+        <button onclick="window.location.href='https://link4sub.com/xxxxxx'">Vượt Link Lấy Key</button>
+        <button onclick="copyKey()" style="background: #22c55e;">Copy Key</button>
     </div>
+
     <script>
-        async function generateKey() {
-            const res = await fetch('/api/generate-key');
-            const data = await res.json();
-            document.getElementById('key-display').innerText = data.key;
-            navigator.clipboard.writeText(data.key);
-            alert("Đã copy: " + data.key);
+        async function fetchKey() {
+            try {
+                const res = await fetch('/api/generate-key');
+                const data = await res.json();
+                document.getElementById('key-display').innerText = data.key;
+            } catch (e) {
+                alert("Lỗi kết nối server!");
+            }
         }
+
+        function copyKey() {
+            const key = document.getElementById('key-display').innerText;
+            if (key !== "❌ NO KEY") {
+                navigator.clipboard.writeText(key);
+                alert("Đã copy: " + key);
+            } else {
+                alert("Chưa có Key!");
+            }
+        }
+        
+        // Tự động lấy key khi trang web tải xong
+        fetchKey();
     </script>
 </body>
 </html>
