@@ -1,5 +1,10 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/server.js" }
+  "version": 2,
+  "builds": [
+    { "src": "Sever.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "Sever.js" }
   ]
 }
+module.exports = app;
