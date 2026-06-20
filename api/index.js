@@ -25,8 +25,3 @@ app.get('/check-key', (req, res) => {
 
 //app.listen(PORT, () => console.log('Server is running!'));
        module.exports = app;  
-{
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
